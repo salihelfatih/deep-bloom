@@ -1,0 +1,17 @@
+# Datasets
+data/
+
+# Python virtual environments
+venv/
+.venv/
+
+# Python caches
+__pycache__/
+*.pyc
+
+# IDE / Editor specific files
+.vscode/
+.idea/
+
+# Gradio cache
+.gradio/
