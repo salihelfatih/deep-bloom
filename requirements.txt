@@ -6,3 +6,5 @@ Pillow
 gradio
 scikit-learn
 seaborn
+scipy
+pandas

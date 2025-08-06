@@ -2,7 +2,7 @@
 
 **Fulla (فلة)** is a deep learning project that classifies flowers from images using a ResNet-based neural network and transfer learning. Built with **PyTorch** and deployed with **Gradio**, this app blends the elegance of nature with the power of machine learning.
 
-> Upload a picture of a flower. Watch the model guess and let it bloom!
+> Upload a picture of a flower. Watch the model guess. Let it bloom!
 
 ## 🖼️ Live Demo
 

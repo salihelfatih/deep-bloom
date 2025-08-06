@@ -4,14 +4,14 @@ from torchvision import transforms
 from fulla_core.model import create_fulla_model
 from PIL import Image
 
-# 🔃 Load Model and Class Names
+# Loading model and class names
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = create_fulla_model()
 model.load_state_dict(torch.load("fulla_model.pth", map_location=device))
 model.to(device)
 model.eval()
 
-# 💐 Class names from the dataset authors
+# 🌼 Flower class names
 class_names = [
     "pink primrose",
     "hard-leaved pocket orchid",
@@ -118,9 +118,9 @@ class_names = [
 ]
 
 
-# 🌸 Flower Classification Function
+# 🌷 Defining the prediction function
 def predict(image):
-    """Takes an image, transforms it, and returns the model's prediction."""
+    # Taking an image, transforming it, and returning the model's prediction
     transform = transforms.Compose(
         [
             transforms.Resize(256),
@@ -135,17 +135,17 @@ def predict(image):
 
     with torch.no_grad():
         outputs = model(image)
-        # Use softmax to get probabilities
+        # Using softmax to get probabilities
         probabilities = torch.nn.functional.softmax(outputs, dim=1)[0]
-        # Create a dictionary of the top 5 predictions
+        # Getting the top 5 predictions
         confidences = {class_names[i]: float(probabilities[i]) for i in range(102)}
 
     return confidences
 
 
-# 🌼 Create and Launch the Gradio Interface
+# 🌸 Creating the Gradio Interface
 if __name__ == "__main__":
-    # Define a floral theme
+    # Defining a floral theme for the Gradio interface
     floral_theme = gr.themes.Base(
         primary_hue=gr.themes.colors.pink,
         secondary_hue=gr.themes.colors.rose,
@@ -155,7 +155,7 @@ if __name__ == "__main__":
         body_background_fill="linear-gradient(to right, #fde4e4, #fde4e4, #fde4e4, #e6e6fa, #e6e6fa)",
         body_background_fill_dark="linear-gradient(to right, #2c1a2b, #1a1a2b)",
     )
-    # Use gr.Blocks for a more custom layout
+    # Using gr.Blocks for a more custom layout
     with gr.Blocks(theme=floral_theme) as interface:
         gr.Markdown("# 🌸 Fulla Flower Classifier 🌸")
         gr.Markdown(
@@ -171,15 +171,19 @@ if __name__ == "__main__":
 
         gr.Examples(
             examples=[
-                "assets/rose.jpg",
-                "assets/sunflower.jpg",
-                "assets/lily.jpg",
-                "assets/daisy.jpg",
-                "assets/buttercup.jpg",
-                "assets/cyclamen.jpg",
-                "assets/hyacinth.jpg",
-                "assets/orchid.jpg",
-                "assets/tulip.jpg",
+                "assets/image_01340.jpg",
+                "assets/image_02550.jpg",
+                "assets/image_04430.jpg",
+                "assets/image_05020.jpg",
+                "assets/image_05440.jpg",
+                "assets/image_05466.jpg",
+                "assets/image_05602.jpg",
+                "assets/image_06500.jpg",
+                "assets/image_06743.jpg",
+                "assets/image_07142.jpg",
+                "assets/image_07436.jpg",
+                "assets/image_07777.jpg",
+                "assets/image_07983.jpg",
             ],
             inputs=image_input,
             outputs=label_output,
@@ -188,5 +192,5 @@ if __name__ == "__main__":
 
         gr.Markdown("--- \n*Developed by Salih Elfatih as a capstone project.*")
 
-    # 🚀 Launch the Gradio App
+    # Launching the Gradio App
     interface.launch(share=True)
