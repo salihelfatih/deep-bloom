@@ -34,7 +34,7 @@ The confusion matrix below shows the model's high performance, with a strong dia
 1. **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/salihelfatih/fulla]
+    git clone https://github.com/salihelfatih/fulla
     cd Fulla
     ```
 
